@@ -1,17 +1,31 @@
 <?php
+//ACCEDER A LAS VARIABLES DE ENTORNO ENCONTRADAS EN EL ARCHIVO '.env'
 require_once __DIR__ . '/vendor/autoload.php';
-use Dotenv\Dotenv;
-
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$dbHost = getenv('DB_HOST');
-$dbUser = getenv('DB_USER');
-$dbPass = getenv('DB_PASS');
-
+$dbHost = $_ENV['DB_HOST'];
+$dbUser = $_ENV['DB_USER'];
+$dbPass = $_ENV['DB_PASS'];
 
 ?>
 
-<h1><?= $dbHost ?></h1>
-<h1><?= $dbUser ?></h1>
-<h1><?= $dbPass ?></h1>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Variables de entorno</title>
+  <link rel="stylesheet" href="src/styles/style.css">
+</head>
+
+<body>
+  <div class="p-5 space-y-5">
+    <h1 class="text-7xl text-blue-700">Variables de entorno</h1>
+    <h2 class="text-xl"><span class="font-bold">Host:</span> <?= $dbHost; ?></h2>
+    <h2 class="text-xl"><span class="font-bold">User:</span> <?= $dbUser; ?></h2>
+    <h2 class="text-xl"><span class="font-bold">Password:</span> <?= $dbPass; ?></h2>
+  </div>
+</body>
+
+</html>
