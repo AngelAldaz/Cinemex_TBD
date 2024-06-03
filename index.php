@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sentencia->bindParam(":id_pelicula", $id_pelicula);
   $sentencia->execute();
 }
+$sentencia = $conn->prepare("SELECT horarios.*, 
+    idiomas.nombre_idioma AS idioma, 
+    cines.nombre_cine AS cine,
+    formatos.nombre_formato AS formato
+    FROM horarios
+    LEFT JOIN formatos ON formatos.id_formato = horarios.id_formato
+    LEFT JOIN cines ON cines.id_cine = horarios.id_cine
+    LEFT JOIN idiomas ON idiomas.id_idioma = horarios.id_idioma");
+
+$sentencia->execute();
+$moiveInfos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -157,20 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div> -->
 
   <script>
-    <?php
-    $sentencia = $conn->prepare("SELECT horarios.*, 
-    idiomas.nombre_idioma AS idioma, 
-    cines.nombre_cine AS cine,
-    formatos.nombre_formato AS formato
-    FROM horarios
-    LEFT JOIN formatos ON formatos.id_formato = horarios.id_formato
-    LEFT JOIN cines ON cines.id_cine = horarios.id_cine
-    LEFT JOIN idiomas ON idiomas.id_idioma = horarios.id_idioma");
-
-    $sentencia->execute();
-    $moiveInfos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-
     function showMovieAlert(pelicula) {
       Swal.fire({
         toast: true,
