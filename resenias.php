@@ -49,7 +49,7 @@ if (isset($_GET['movieID'])) {
         echo '
       <article class="w-2/4 mx-auto mt-5">
         <div class="font-medium dark:text-white">
-          <p>' . htmlspecialchars($registro['nombre']) . '</p>
+          <p styelr="color:black;">' . htmlspecialchars($registro['nombre']) . '</p>
         </div>
         <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">';
         
