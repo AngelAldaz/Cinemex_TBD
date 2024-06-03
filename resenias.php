@@ -70,6 +70,7 @@ if (isset($_GET['movieID'])) {
           <p>' . htmlspecialchars($registro['correo']) . '</p>
         </footer>
         <p class="mb-2 text-gray-500 dark:text-gray-400">' . htmlspecialchars($registro['comentario']) . '</p>
+        <hr style="border-width:2px;">
       </article>';
       }
     }
