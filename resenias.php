@@ -14,7 +14,7 @@ if (isset($_GET['movieID'])) {
   $sentencia->execute();
 
   // Obtener el primer resultado de la consulta
-  $registro = $sentencia->fetch(PDO::FETCH_ASSOC);
+  $registro = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -49,10 +49,10 @@ if (isset($_GET['movieID'])) {
       $cantAM = ceil($registro['calificacion'] / 2);
       $cantNE = 5 - $cantAM;
     ?>
-
+<?php foreach($registro as $r){?>
       <article class="w-2/4 mx-auto mt-5">
         <div class="font-medium dark:text-white">
-          <p><?php echo $registro['nombre'] ?></p>
+          <p><?php echo $r['nombre'] ?></p>
         </div>
         <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
           <?php for ($i = 0; $i < $cantAM; $i++) { ?>
@@ -67,16 +67,13 @@ if (isset($_GET['movieID'])) {
           <?php } ?>
         </div>
         <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
-          <p><?php echo $registro['correo'] ?></p>
+          <p><?php echo $r['correo'] ?></p>
         </footer>
-        <p class="mb-2 text-gray-500 dark:text-gray-400"><?php echo $registro['comentario'] ?></p>
+        <p class="mb-2 text-gray-500 dark:text-gray-400"><?php echo $r['comentario'] ?></p>
       </article>
+<?php }?>
 
   </body>
 
   </html>
 
-<?php
-    }
-  }
-?>
