@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div> -->
 
   <script>
-      <?php?
+      <?php
 $sentencia = $conn->prepare("SELECT horarios.*, 
     idiomas.nombre_idioma AS idioma, 
     cines.nombre_cine AS cine,
@@ -170,7 +170,7 @@ $sentencia = $conn->prepare("SELECT horarios.*,
 
 $sentencia->execute();
 $moiveInfos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-        >
+        ?>
     function showMovieAlert(pelicula) {
       Swal.fire({
         toast: true,
